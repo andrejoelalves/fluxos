@@ -1,0 +1,243 @@
+
+<!--DOCTYPE html-->
+<html lang="en,pt">
+  <head>
+      <meta charset="utf-8">
+      <title>Países de Origem dos Casos Importados|COVID-19</title>
+
+		<link rel="stylesheet" href="https://unpkg.com/leaflet@1.3.4/dist/leaflet.css"
+        integrity="sha512-puBpdR0798OZvTTbP4A8Ix/l+A4dHDD0DGqYW6RQ+9jxkRFclaxxQb/SJAWZfWAkuyeQUytO7+7N4QKrDh+drA=="
+        crossorigin=""/>   
+		
+	<!--Zoom Home-->
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css"/>           
+		
+		<link rel="stylesheet" href="style.css">
+
+		<script src="https://unpkg.com/leaflet@1.3.4/dist/leaflet.js"
+        integrity="sha512-nMMmRyTVoLYqjP9hrbed9S+FzjZHW5gY1TWCHA5ckwXZBadntCNs8kEqAWdrb9O7rxbCaA4lKTIWjDXZxflOcA=="
+        crossorigin=""></script>
+
+		<script src="https://code.jquery.com/jquery-3.3.1.min.js"
+        integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+        crossorigin="anonymous"></script>
+
+		<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"
+        integrity="sha256-VazP97ZCwtekAsvgPBSUwPFKdrwD3unUfSGVYrahUqU="
+        crossorigin="anonymous"></script>
+		<script src="https://unpkg.com/esri-leaflet@2.4.1/dist/esri-leaflet.js" integrity="sha512-xY2smLIHKirD03vHKDJ2u4pqeHA7OQZZ27EjtqmuhDguxiUvdsOuXMwkg16PQrm9cgTmXtoxA6kwr8KBy3cdcw=="crossorigin=""></script>
+		
+	<!--Mapa de base cinzento-->		
+		<script type="text/javascript" src="importados.geojson"></script>
+	
+	
+      <style>
+          html, body { margin: 0; padding: 0; height: 100%; }
+          #map { min-height: 100%; }
+		  
+		  /* --- Zoom Home --- */
+		  .leaflet-bar a { background-color: #fff; border-bottom: 1px solid #ccc; color: #444; display: block; height: 26px; width: 26px; line-height: 1.45 !important; text-align: center; text-decoration: none; font: bold 18px 'Lucida Console', Monaco, monospace; }
+		  
+		  #legenda {
+			position: absolute;
+			z-index: 1000;
+			bottom: 15px;
+			right: 15px;
+		  }
+	  
+	  </style>
+  </head>
+
+  <body>
+	  
+      <div id="map"><div id="legenda"><img src="legenda.png" width="161"></div></div>
+	  <script src='./src/src.js'></script>
+
+      <script>
+           var sudoeste = L.latLng(-80, -167),
+			nordeste = L.latLng(75, 170),
+			extensao = L.latLngBounds(sudoeste, nordeste);
+	
+	
+		var map = L.map('map', {
+			zoomControl: false,
+			center: [25, 0],
+			zoom:1,
+			maxZoom: 12,
+			minZoom: 1,
+			maxBounds: extensao,
+		});
+			
+			var lat = 25; // __________Zoom Home
+			var lng = 0; // __________Zoom Home
+			var zoom = 1; // __________Zoom Home
+			
+			map.setView([lat, lng], zoom); // __________Zoom Home
+			
+         var layer = L.esri.basemapLayer('Gray').addTo(map);
+		  
+		  // __________Zoom Home
+		  
+	var data = [
+{"from":[14.085,64.448],"to":[-9.141551,38.763496],"labels":["Noruega","Portugal"],"color":"#99ff1b"},
+{"from":[10.046,55.963],"to":[-9.141551,38.763496],"labels":["Dinamarca","Portugal"],"color":"#99ff1b"},
+{"from":[19.401,52.125],"to":[-9.141551,38.763496],"labels":["Polónia","Portugal"],"color":"#99ff1b"},
+{"from":[15.338,49.743],"to":[-9.141551,38.763496],"labels":["República Checa","Portugal"],"color":"#99ff1b"},
+{"from":[31.387,49.017],"to":[-9.141551,38.763496],"labels":["Ucrânia","Portugal"],"color":"#99ff1b"},
+{"from":[47.533,40.292],"to":[-9.141551,38.763496],"labels":["Azerbeijão","Portugal"],"color":"#99ff1b"},
+{"from":[35.18,39.06],"to":[-9.141551,38.763496],"labels":["Turquia","Portugal"],"color":"#99ff1b"},
+{"from":[137.991,37.562],"to":[-9.141551,38.763496],"labels":["Japão","Portugal"],"color":"#99ff1b"},
+{"from":[103.834,36.563],"to":[-9.141551,38.763496],"labels":["China","Portugal"],"color":"#99ff1b"},
+{"from":[54.301,32.566],"to":[-9.141551,38.763496],"labels":["Irão","Portugal"],"color":"#99ff1b"},
+{"from":[-6.318,31.884],"to":[-9.141551,38.763496],"labels":["Marrocos","Portugal"],"color":"#99ff1b"},
+{"from":[51.191,25.315],"to":[-9.141551,38.763496],"labels":["Qatar","Portugal"],"color":"#99ff1b"},
+{"from":[44.586,24.023],"to":[-9.141551,38.763496],"labels":["Arábia Saudita","Portugal"],"color":"#99ff1b"},
+{"from":[-66.17,7.122],"to":[-9.141551,38.763496],"labels":["Venezuela","Portugal"],"color":"#99ff1b"},
+{"from":[73.252,3.216],"to":[-9.141551,38.763496],"labels":["Maldivas","Portugal"],"color":"#99ff1b"},
+{"from":[103.808,1.352],"to":[-9.141551,38.763496],"labels":["Singapura","Portugal"],"color":"#99ff1b"},
+{"from":[16.74,62.79],"to":[-9.141551,38.763496],"labels":["Suécia","Portugal"],"color":"#e9ff20"},
+{"from":[6.088,49.771],"to":[-9.141551,38.763496],"labels":["Luxemburgo","Portugal"],"color":"#e9ff20"},
+{"from":[14.442,35.891],"to":[-9.141551,38.763496],"labels":["Malta","Portugal"],"color":"#e9ff20"},
+{"from":[69.386,29.967],"to":[-9.141551,38.763496],"labels":["Paquistão","Portugal"],"color":"#e9ff20"},
+{"from":[-102.533,23.95],"to":[-9.141551,38.763496],"labels":["México","Portugal"],"color":"#e9ff20"},
+{"from":[-79.036,21.621],"to":[-9.141551,38.763496],"labels":["Cuba","Portugal"],"color":"#e9ff20"},
+{"from":[-77.319,18.151],"to":[-9.141551,38.763496],"labels":["Jamaica","Portugal"],"color":"#e9ff20"},
+{"from":[25.083,-28.993],"to":[-9.141551,38.763496],"labels":["África do Sul","Portugal"],"color":"#e9ff20"},
+{"from":[-71.374,-37.853],"to":[-9.141551,38.763496],"labels":["Chile","Portugal"],"color":"#e9ff20"},
+{"from":[-8.151,53.176],"to":[-9.141551,38.763496],"labels":["Irlanda","Portugal"],"color":"#e9ff20"},
+{"from":[34.966,31.358],"to":[-9.141551,38.763496],"labels":["Israel","Portugal"],"color":"#e9ff20"},
+{"from":[-90.357,15.702],"to":[-9.141551,38.763496],"labels":["Guatemala","Portugal"],"color":"#e9ff20"},
+{"from":[101.017,15.127],"to":[-9.141551,38.763496],"labels":["Tailândia","Portugal"],"color":"#e9ff20"},
+{"from":[17.545,-12.295],"to":[-9.141551,38.763496],"labels":["Angola","Portugal"],"color":"#e9ff20"},
+{"from":[29.872,26.494],"to":[-9.141551,38.763496],"labels":["Egito","Portugal"],"color":"#e9ff20"},
+{"from":[79.616,22.884],"to":[-9.141551,38.763496],"labels":["Índia","Portugal"],"color":"#e9ff20"},
+{"from":[-23.968,15.979],"to":[-9.141551,38.763496],"labels":["Cabo Verde","Portugal"],"color":"#e9ff20"},
+{"from":[117.369,-2.283],"to":[-9.141551,38.763496],"labels":["Indonésia","Portugal"],"color":"#e9ff20"},
+{"from":[-109.407,59.492],"to":[-9.141551,38.763496],"labels":["Canadá","Portugal"],"color":"#e9ff20"},
+{"from":[14.14,47.593],"to":[-9.141551,38.763496],"labels":["Áustria","Portugal"],"color":"#e9ff20"},
+{"from":[4.664,50.643],"to":[-9.141551,38.763496],"labels":["Bélgica","Portugal"],"color":"#ffc726"},
+{"from":[10.394,51.107],"to":[-9.141551,38.763496],"labels":["Alemanha","Portugal"],"color":"#ffc726"},
+{"from":[134.49,-25.735],"to":[-9.141551,38.763496],"labels":["Austrália","Portugal"],"color":"#ffc726"},
+{"from":[-65.168,-35.376],"to":[-9.141551,38.763496],"labels":["Argentina","Portugal"],"color":"#ffc726"},
+{"from":[5.603,52.249],"to":[-9.141551,38.763496],"labels":["Paises Baixos","Portugal"],"color":"#ffc726"},
+{"from":[-99.894,39.744],"to":[-9.141551,38.763496],"labels":["Estados Unidos da América","Portugal"],"color":"#ff7e2b"},
+{"from":[12.072,42.797],"to":[-9.141551,38.763496],"labels":["Itália","Portugal"],"color":"#ff7e2b"},
+{"from":[-53.09,-10.773],"to":[-9.141551,38.763496],"labels":["Brasil","Portugal"],"color":"#ff7e2b"},
+{"from":[1.577,42.549],"to":[-9.141551,38.763496],"labels":["Andorra","Portugal"],"color":"#ff7e2b"},
+{"from":[8.234,46.802],"to":[-9.141551,38.763496],"labels":["Suíça","Portugal"],"color":"#ff7e2b"},
+{"from":[54.335,23.91],"to":[-9.141551,38.763496],"labels":["Emirados Árabes Unidos","Portugal"],"color":"#ff7e2b"},
+{"from":[-2.896,54.155],"to":[-9.141551,38.763496],"labels":["Reino Unido","Portugal"],"color":"#8f0500"},
+{"from":[2.552,46.565],"to":[-9.141551,38.763496],"labels":["França","Portugal"],"color":"#8f0500"},
+{"from":[-3.648,40.228],"to":[-9.141551,38.763496],"labels":["Espanha","Portugal"],"color":"#8f0500"},
+];
+        
+			data = data.map(item => { return {...item, value: parseInt(Math.random()*20)}});
+
+			var migrationLayer = new L.migrationLayer({
+				map: map,
+				data: data,
+				pulseRadius:10,
+				pulseBorderWidth:3,
+				arcWidth:1,
+				arcLabel:true,
+				arcLabelFont:'10px sans-serif',
+				maxWidth:1
+				}
+			);
+			migrationLayer.addTo(map);
+
+		  
+		  // custom zoom bar control that includes a Zoom Home function
+L.Control.zoomHome = L.Control.extend({
+    options: {
+        position: 'topleft',
+        zoomInText: '+',
+        zoomInTitle: 'Zoom in',
+        zoomOutText: '-',
+        zoomOutTitle: 'Zoom out',
+        zoomHomeText: '<i class="fa fa-home" style="line-height:1.65;"></i>',
+        zoomHomeTitle: 'Zoom home'
+    },
+
+    onAdd: function (map) {
+        var controlName = 'gin-control-zoom',
+            container = L.DomUtil.create('div', controlName + ' leaflet-bar'),
+            options = this.options;
+
+        this._zoomInButton = this._createButton(options.zoomInText, options.zoomInTitle,
+        controlName + '-in', container, this._zoomIn);
+        this._zoomHomeButton = this._createButton(options.zoomHomeText, options.zoomHomeTitle,
+        controlName + '-home', container, this._zoomHome);
+        this._zoomOutButton = this._createButton(options.zoomOutText, options.zoomOutTitle,
+        controlName + '-out', container, this._zoomOut);
+
+        this._updateDisabled();
+        map.on('zoomend zoomlevelschange', this._updateDisabled, this);
+
+        return container;
+    },
+
+    onRemove: function (map) {
+        map.off('zoomend zoomlevelschange', this._updateDisabled, this);
+    },
+
+    _zoomIn: function (e) {
+        this._map.zoomIn(e.shiftKey ? 3 : 1);
+    },
+
+    _zoomOut: function (e) {
+        this._map.zoomOut(e.shiftKey ? 3 : 1);
+    },
+
+    _zoomHome: function (e) {
+        map.setView([lat, lng], zoom);
+    },
+
+    _createButton: function (html, title, className, container, fn) {
+        var link = L.DomUtil.create('a', className, container);
+        link.innerHTML = html;
+        link.href = '#';
+        link.title = title;
+
+        L.DomEvent.on(link, 'mousedown dblclick', L.DomEvent.stopPropagation)
+            .on(link, 'click', L.DomEvent.stop)
+            .on(link, 'click', fn, this)
+            .on(link, 'click', this._refocusOnMap, this);
+
+        return link;
+    },
+
+    _updateDisabled: function () {
+        var map = this._map,
+            className = 'leaflet-disabled';
+
+        L.DomUtil.removeClass(this._zoomInButton, className);
+        L.DomUtil.removeClass(this._zoomOutButton, className);
+
+        if (map._zoom === map.getMinZoom()) {
+            L.DomUtil.addClass(this._zoomOutButton, className);
+        }
+        if (map._zoom === map.getMaxZoom()) {
+            L.DomUtil.addClass(this._zoomInButton, className);
+        }
+    }
+});
+
+		
+	// Creating scale control
+			var scale = L.control.scale();
+			scale.addTo(map);
+			
+	// Creating Zoom Home
+			var zoomHome = new L.Control.zoomHome();
+			zoomHome.addTo(map);			
+	// 
+	map.attributionControl.addAttribution('');
+	
+
+	
+	
+      </script>
+
+  </body>
+</html>
